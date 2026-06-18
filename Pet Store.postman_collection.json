@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "d5f2b1e6-2ceb-48e1-a2bf-267c40333512",
+    "name": "Pet Store",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "3475032",
+    "_collection_link": "https://go.postman.co/collection/3475032-d5f2b1e6-2ceb-48e1-a2bf-267c40333512?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "AddPet 200ok",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Check pet ID\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.id).to.eql(678786767);",
+              "});",
+              "",
+              "pm.test(\"Check pet category\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.category.id).to.eql(23);",
+              "    pm.expect(jsonData.category.name).to.eql(\"howrah\");",
+              "});",
+              "",
+              "pm.test(\"Check pet photoUrls 0 element\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.photoUrls[0]).to.eql(\"https://www.epochtimes.com.ua/sites/default/files/field/image/11-2023/1_et-ground-2-web-36798-1-1.jpg\");",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": 678786767,\n  \"category\": {\n    \"id\": 23,\n    \"name\": \"howrah\"\n  },\n  \"name\": \"howrashok\",\n  \"photoUrls\": [\n    \"https://www.epochtimes.com.ua/sites/default/files/field/image/11-2023/1_et-ground-2-web-36798-1-1.jpg\", \n    \"2https://www.epochtimes.com.ua/sites/default/files/field/image/11-2023/1_et-ground-2-web-36798-1-2.jpg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://petstore.swagger.io/v2/pet",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "swagger",
+            "io"
+          ],
+          "path": [
+            "v2",
+            "pet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddPet 405 Invalid input",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 405\", function () {",
+              "    pm.response.to.have.status(405);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"test\",\n  \"category\": {\n    \"id\": 23,\n    \"name\": \"howrah\"\n  },\n  \"name\": \"howrashok\",\n  \"photoUrls\": [\n    \"https://www.epochtimes.com.ua/sites/default/files/field/image/11-2023/1_et-ground-2-web-36798-1-1.jpg\", \n    \"https://www.epochtimes.com.ua/sites/default/files/field/image/11-2023/1_et-ground-2-web-36798-1-1.jpg\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"available\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://petstore.swagger.io/v2/pet",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "swagger",
+            "io"
+          ],
+          "path": [
+            "v2",
+            "pet"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FindPetByID",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.swagger.io/v2/pet/678786767",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "swagger",
+            "io"
+          ],
+          "path": [
+            "v2",
+            "pet",
+            "678786767"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "petId",
+      "value": "1234567"
+    }
+  ]
+}
